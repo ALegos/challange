@@ -32,7 +32,7 @@ dev_smoke() {
 _run_smoke() {
   baseUrl="http://localhost:8088"
   echo "Running smoke tests on $baseUrl..." && \
-    (curl -fsS "$baseUrl/api/direct?dep_sid=3&arr_sid=4" | grep -E 'true|false') && \
+    (curl -fsS "$baseUrl/api/direct?dep_sid=153&arr_sid=5" | grep -E 'true|false') && \
     (curl -fsS "$baseUrl/api/direct?dep_sid=0&arr_sid=1" | grep -E 'true|false')
 #    (curl -fsS "$baseUrl/api/direct?dep_sid=329879&arr_sid=506679" | grep -E 'true|false') && \
 #    (curl -fsS "$baseUrl/api/direct?dep_sid=421104&arr_sid=421104" | grep -E 'true|false')
@@ -48,8 +48,8 @@ docker_run() {
 
 docker_smoke() {
   containerId=$(docker run -d goeuro:devtest)
-  echo "Waiting 60 seconds for service to start..."
-  sleep 60
+  echo "Waiting 10 seconds for service to start..."
+  sleep 10
   docker exec $containerId /src/service.sh dev_smoke
   retval=$?
   docker rm -f $containerId
