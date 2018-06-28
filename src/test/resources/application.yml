@@ -1,0 +1,11 @@
+input-data:
+  file:
+    enable: false
+    directory: ${input-directory-path:}
+    path: ${input-file-path:}
+logging:
+  level:
+#    root: debug
+    com.hupalo.watchapi: debug
+
+management.endpoint.restart.enabled: ${input-data.file.enable}
